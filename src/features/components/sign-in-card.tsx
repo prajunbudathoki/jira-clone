@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { FcGoogle } from "react-icons/fc";
 import { z } from "zod";
 import { useForm } from "@tanstack/react-form";
+import { Link } from "@tanstack/react-router";
 
 const formSchema = z.object({
   email: z.string().email("Enter a valid email address"),
@@ -23,11 +24,11 @@ export function SignInCard() {
 
   return (
     <Card className="w-full h-full md:w-[478px] border-none shadow-none">
-      <CardHeader className="flex items-center justify-center text-center p-7">
+      <CardHeader className="flex items-center justify-center text-center p-2">
         <CardTitle className="text-2xl">Welcome back !!</CardTitle>
       </CardHeader>
 
-      <CardContent className="p-7">
+      <CardContent className="p-6">
         <form
           onSubmit={(e) => {
             e.preventDefault();
@@ -104,6 +105,14 @@ export function SignInCard() {
           <FcGoogle className="h-3 w-3 mr-2" />
           Login with Google
         </Button>
+      </CardContent>
+      <CardContent className="p-7 text-center">
+        <p>
+          Don&apos; t have an account?{" "}
+          <Link to="/auth/sign-up">
+            <span className="text-blue-700">Sign Up</span>
+          </Link>
+        </p>
       </CardContent>
     </Card>
   );
