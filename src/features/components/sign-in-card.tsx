@@ -38,7 +38,11 @@ export function SignInCard() {
           <form.Field
             name="email"
             validators={{
-              onChange: formSchema.shape.email,
+              onChange: ({ value }) => {
+                if (!value) return "Email is required";
+                if (!value.includes("@")) return "Email must contain @";
+                return undefined;
+              },
             }}
           >
             {(field) => (
@@ -61,7 +65,12 @@ export function SignInCard() {
           <form.Field
             name="password"
             validators={{
-              onChange: formSchema.shape.password,
+              onChange: ({ value }) => {
+                if (!value) return "Password is required";
+                if (value.length < 6)
+                  return "Password must be at least 6 characters";
+                return undefined;
+              },
             }}
           >
             {(field) => (
