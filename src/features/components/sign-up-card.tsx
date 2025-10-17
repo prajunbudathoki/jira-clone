@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { FcGoogle } from "react-icons/fc";
+import { email, z } from "zod";
+
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string,
+});
 
 export function SIgnUpCard() {
   return (
