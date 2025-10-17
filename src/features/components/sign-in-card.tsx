@@ -39,8 +39,10 @@ export function SignInCard() {
             name="email"
             validators={{
               onChange: ({ value }) => {
-                if (!value) return "Email is required";
-                if (!value.includes("@")) return "Email must contain @";
+                const result = formSchema.shape.email.safeParse(value);
+                if (!result.success) {
+                  return result.error.issues[0]?.message;
+                }
                 return undefined;
               },
             }}
@@ -55,7 +57,7 @@ export function SignInCard() {
                 />
                 {field.state.meta.errors[0] && (
                   <p className="text-sm text-red-500">
-                    {String(field.state.meta.errors[0])}
+                    {field.state.meta.errors[0]}
                   </p>
                 )}
               </div>
@@ -66,9 +68,10 @@ export function SignInCard() {
             name="password"
             validators={{
               onChange: ({ value }) => {
-                if (!value) return "Password is required";
-                if (value.length < 6)
-                  return "Password must be at least 6 characters";
+                const result = formSchema.shape.password.safeParse(value);
+                if (!result.success) {
+                  return result.error.issues[0]?.message;
+                }
                 return undefined;
               },
             }}
@@ -83,7 +86,7 @@ export function SignInCard() {
                 />
                 {field.state.meta.errors[0] && (
                   <p className="text-sm text-red-500">
-                    {String(field.state.meta.errors[0])}
+                    {field.state.meta.errors[0]}
                   </p>
                 )}
               </div>
