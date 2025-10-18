@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Link } from "@tanstack/react-router";
 import { FcGoogle } from "react-icons/fc";
 import { email, z } from "zod";
 
@@ -12,10 +13,10 @@ const formSchema = z.object({
 export function SIgnUpCard() {
   return (
     <Card className="w-full h-full md:w-[478px] border-none shadow-none ">
-      <CardHeader className="flex items-center justify-center text-center p-7">
+      <CardHeader className="flex items-center justify-center text-center p-2">
         <CardTitle className="text-2xl">Sign Up</CardTitle>
       </CardHeader>
-      <CardContent className="p-7">
+      <CardContent className="p-6">
         <form className="space-y-3">
           <Input
             required
@@ -59,6 +60,14 @@ export function SIgnUpCard() {
           Login with Google
         </Button>
       </CardContent>
+      <CardContent className="p-7 text-center">
+              <p>
+                Already have an account?{" "}
+                <Link to="/auth/sign-up">
+                  <span className="text-blue-700">Sign In</span>
+                </Link>
+              </p>
+            </CardContent>
     </Card>
   );
 }

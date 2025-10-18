@@ -5,3 +5,6 @@ dist
 .vscode
 .idea
 *.log
+/generated/prisma
+
+/generated/prisma
